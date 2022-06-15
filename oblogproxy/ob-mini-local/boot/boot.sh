@@ -24,7 +24,7 @@ TIMESTAMP="$(date +%s)"
 
 [[ -f $CLUSTER_CONF ]] && {
   echo "start ob cluster ..."
-  obd cluster restart "$OB_CLUSTER_NAME"
+  obd cluster start "$OB_CLUSTER_NAME"
   obclient -h127.0.0.1 -P2881 -uroot -p"$OB_ROOT_PASSWORD" -e "GRANT ALL PRIVILEGES ON *.* TO root@'%' WITH GRANT OPTION;"
 }
 

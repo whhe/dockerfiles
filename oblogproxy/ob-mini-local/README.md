@@ -20,8 +20,8 @@ docker build -t ${image_repo:tag} .
 
 | Name                 | Default | Description                  |
 |----------------------|---------|------------------------------|
-| OB_VERSION           | `3.1.1` | The version of `oceanbase`.  |
-| OB_LOG_PROXY_VERSION | `1.0.0` | The version of `oblogproxy`. |
+| OB_VERSION           | `3.1.3` | The version of `oceanbase`.  |
+| OB_LOG_PROXY_VERSION | `1.0.2` | The version of `oblogproxy`. |
 
 ### Start the Docker container
 
