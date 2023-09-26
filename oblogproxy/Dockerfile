@@ -8,7 +8,7 @@ ENV OB_SYS_PASSWORD="password"
 
 WORKDIR /root/boot/
 
-RUN yum install -y wget &&  \
+RUN yum install -y wget iproute &&  \
     wget $DOWNLOAD_URL && tar -zxvf $PKG_NAME -C /usr/local && rm -rf $PKG_NAME && \
     rm -f /usr/local/oblogproxy/conf/conf.json
 
