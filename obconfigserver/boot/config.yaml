@@ -1,0 +1,11 @@
+ob-configserver:
+  servers:
+    - 127.0.0.1
+  global:
+    listen_port: 8080
+    server_ip: 0.0.0.0
+    home_path: /home/admin/obconfigserver
+    storage:
+      sqlite3:
+      database_type: sqlite3
+      connection_url: "/home/admin/obconfigserver/.data.db?cache=shared&_fk=1"
