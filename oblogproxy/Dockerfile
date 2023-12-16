@@ -1,15 +1,27 @@
 FROM centos:centos7
 
-ARG PKG_NAME="oblogproxy-ce-for-4x-1.1.3-20230815201457.tar.gz"
-ARG DOWNLOAD_URL="https://github.com/oceanbase/oblogproxy/releases/download/v1.1.3/oblogproxy-ce-for-4x-1.1.3-20230815201457.tar.gz"
+# docker build --build-arg VERSION={VERSION} .
+ARG VERSION
 
 ENV OB_SYS_USERNAME="root"
 ENV OB_SYS_PASSWORD="password"
 
 WORKDIR /root/boot/
 
-RUN yum install -y wget iproute &&  \
-    wget $DOWNLOAD_URL && tar -zxvf $PKG_NAME -C /usr/local && rm -rf $PKG_NAME && \
+RUN yum install -y yum-utils && \
+    yum-config-manager --add-repo https://mirrors.aliyun.com/oceanbase/OceanBase.repo && \
+    sed -i 's/$releasever/7/' /etc/yum.repos.d/OceanBase.repo && \
+    yum clean all
+
+RUN if [ -z "${VERSION}" ]; then \
+      echo "VERSION is empty, then build the docker with latest rpm"; \
+      V=`yum info oblogproxy | grep Version | awk '{print $3}'`; \
+      R=`yum info oblogproxy | grep Release | awk '{print $3}' | awk -F. '{print $1}'`; \
+      VERSION="${V}-${R}"; \
+    else \
+      echo "build the docker with VERSION ${VERSION}"; \
+    fi && \
+    yum install -y oblogproxy-${VERSION}.el7 && \
     rm -f /usr/local/oblogproxy/conf/conf.json
 
 COPY boot /root/boot/

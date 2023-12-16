@@ -15,10 +15,9 @@ docker build -t ${image_repo:tag} .
 
 There are some arguments that can be used through `--build-arg` in the `docker build` command.
 
-| Name         | Description                      | Default                                                                                                             |
-|--------------|----------------------------------|---------------------------------------------------------------------------------------------------------------------|
-| PKG_NAME     | The package name.                | `oblogproxy-ce-for-4x-1.1.3-20230815201457.tar.gz`                                                                  |
-| DOWNLOAD_URL | The download url of the package. | `https://github.com/oceanbase/oblogproxy/releases/download/v1.1.3/oblogproxy-ce-for-4x-1.1.3-20230815201457.tar.gz` |
+| Name         | Description                                         | Default                     |
+|--------------|-----------------------------------------------------|-----------------------------|
+| VERSION      | The rpm version, should be 2.0.0 or later releases. | The latest release version. |
 
 ## How to Use
 
